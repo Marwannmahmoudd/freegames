@@ -41,8 +41,7 @@ color: var(--color-text);
  /***** End theme customize *****/
  
  /***** Global *****/
- @import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
- @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap");
+
  
  * {
    transition:all 0s
@@ -63,7 +62,6 @@ color: var(--color-text);
  h4,
  h5,
  h6 {
-    font-family: "Nerko One", cursive;
     color: var(--color-text) !important;
  }
  
