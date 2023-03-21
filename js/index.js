@@ -38,7 +38,7 @@ password : input[1].value,
     console.log(user);
 }
 form.addEventListener('submit',function(){
- 
+ function ooh11(){
     let regex2 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     
     if(input[0].value.trim() == ''){
@@ -54,23 +54,28 @@ else{
     setervalid(input[0])
     return false
 }
-let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
+ }
+    function ooh22(){
+        let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
    
-    if(input[1].value.trim() == ''){
-        ull[1].innerText = 'Password Is Required'
-        setervalid(input[1])
-       
+        if(input[1].value.trim() == ''){
+            ull[1].innerText = 'Password Is Required'
+            setervalid(input[1])
+           
+        }
+    else if(regex3.test(input[1].value)){
+        setsucvalid(input[1])
+    return true
     }
-else if(regex3.test(input[1].value)){
-    setsucvalid(input[1])
-return true
-}
-else{
-    ull[1].innerText = 'Minimum five characters, at least one letter and one number'
-    setervalid(input[1])
-    return false
-}
-
+    else{
+        ull[1].innerText = 'Minimum five characters, at least one letter and one number'
+        setervalid(input[1])
+        return false
+    }
+    
+    }
+ooh11()
+ooh22()
 
 }) ;
 input[0].addEventListener('input',function(){
