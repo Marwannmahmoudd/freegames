@@ -24,35 +24,42 @@ age: input[4].value
     senddata(user)
     console.log(user);
 }
-form.addEventListener('submit',function(){
-    let regex = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/
-    if(input[0].value.trim() == ''){
-        ull[0].innerText = `First Name Is Required`
-        setervalid(input[0])
-       
+document.getElementById('btnRegister').addEventListener('click',function(){
+    function ooh1(){
+        let regex = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/
+        if(input[0].value.trim() == ''){
+            ull[0].innerText = `First Name Is Required`
+            setervalid(input[0])
+        }
+        else if(regex.test(input[0].value)){
+            setsucvalid(input[0])
+        return true
+        }
+        else{
+            ull[0].innerText = 'Minmum Length 2 and Maxmum 20'
+            setervalid(input[0])
+            return false
+        }
     }
-    else if(regex.test(input[0].value)){
-        setsucvalid(input[0])
-    return true
+    function ooh3(){
+        let regex = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/
+        if(input[1].value.trim() == ''){
+            ull[1].innerText = `Last Name Is Required`
+            setervalid(input[1])
+        }
+        else if(regex.test(input[1].value)){
+            setsucvalid(input[1])
+        return true
+        }
+        else{
+            ull[1].innerText = 'Minmum Length 2 and Maxmum 20'
+            setervalid(input[1])
+            return false
+        }
+    
     }
-    else{
-        ull[0].innerText = 'Minmum Length 2 and Maxmum 20'
-        setervalid(input[0])
-        return false
-    }
-    if(input[1].value.trim() == ''){
-        ull[1].innerText = `Last Name Is Required`
-        setervalid(input[1])
-    }
-    else if(regex.test(input[1].value)){
-        setsucvalid(input[1])
-    return true
-    }
-    else{
-        ull[1].innerText = 'Minmum Length 2 and Maxmum 20'
-        setervalid(input[1])
-        return false
-    }
+        
+   function ooh2(){
     let regex2 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
     
     if(input[2].value.trim() == ''){
@@ -68,7 +75,10 @@ else{
     setervalid(input[2])
     return false
 }
-let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
+   }
+    
+   function ooh4(){
+    let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
    
     if(input[3].value.trim() == ''){
         ull[3].innerText = 'Password Is Required'
@@ -84,31 +94,43 @@ else{
     setervalid(input[3])
     return false
 }
-let regex4 = /^([1-7][0-9]|80)$/
-if(input[4].value.trim() == ''){
-    ull[4].innerText = 'Age Is Required'
+   } 
+function ooh5(){
+    let regex4 = /^([1-7][0-9]|80)$/
+    if(input[4].value.trim() == ''){
+        ull[4].innerText = 'Age Is Required'
+        setervalid(input[4])
+    }
+    else if(regex4.test(input[4].value)){
+    setsucvalid(input[4])
+    return true
+    }
+    else{
+        ull[4].innerText = 'Minimum 10 Maxmum 80'
     setervalid(input[4])
+    return false
+    }
 }
-else if(regex4.test(input[4].value)){
-setsucvalid(input[4])
-return true
-}
-else{
-    ull[4].innerText = 'Minimum 10 Maxmum 80'
-setervalid(input[4])
-return false
-}
+ooh1()
+    ooh3()
+    ooh2()
+    ooh4()
+    ooh5()
 })
 form.addEventListener('submit',function(){
-  input.forEach(element => {
-    if(element.classList.contains('is-valid')){
+   setTimeout(() => {
+    input.forEach(element => {
+        if(element.classList.contains('is-invalid')){
+            isvalid = false
+        }
+    else{
         isvalid = true
     }
-else{
-    isvalid = false
-}
-  });
-  if(isvalid == true){
+      });
+   }, 1000);
+
+  
+  if(isvalid === true){
     setform()
   }
   
@@ -127,7 +149,7 @@ input[0].addEventListener('input',function(){
     validage(this,ull[4])
 })
 async function senddata(user){
-    lds.classList.remove("d-none")
+    
  let api = await  fetch('https://sticky-note-fe.vercel.app/signup',{
         method:'Post',
        body:JSON.stringify(user),
@@ -145,7 +167,7 @@ async function senddata(user){
     else{
         document.getElementById('msg').innerText = response.errors?.email.message
     }
-    lds.classList.add("d-none")
+    
     console.log(response);
 }
 function setervalid(input){
@@ -163,7 +185,7 @@ const error = ul
 if(input.value.trim() == ''){
     error.innerText = `${message}`
     setervalid(input)
-    return false
+    
 }
 else if(regex.test(input.value)){
 
@@ -184,7 +206,7 @@ function validemail(input,ul){
     if(input.value.trim() == ''){
         error.innerText = 'Email Is Required'
         setervalid(input)
-        return false
+        
     }
 else if(regex.test(input.value)){
     setsucvalid(input)
@@ -203,7 +225,7 @@ function validpass(input,ul){
     if(input.value.trim() == ''){
         error.innerText = 'Password Is Required'
         setervalid(input)
-        return false
+        
     }
 else if(regex.test(input.value)){
     setsucvalid(input)
@@ -223,7 +245,7 @@ function validage(input,ul){
     if(input.value.trim() == ''){
         error.innerText = 'Age Is Required'
         setervalid(input)
-        return false
+       
     }
 else if(regex.test(input.value)){
     setsucvalid(input)
