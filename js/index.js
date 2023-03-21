@@ -14,15 +14,18 @@ form.addEventListener('input',function(){
     document.getElementById('msg').innerText = ''
 })
 form.addEventListener('submit',function(){
-    input.forEach(element => {
-      if(element.classList.contains('is-valid')){
-          isvalid = true
-      }
-  else{
-      isvalid = false
-  }
-    });
-    if(isvalid == true){
+    setTimeout(() => {
+        input.forEach(element => {
+            if(element.classList.contains('is-valid')){
+                isvalid = true
+            }
+        else{
+            isvalid = false
+        }
+          });
+    }, 1000);
+   
+    if(isvalid === true){
       setform()
     }
     
