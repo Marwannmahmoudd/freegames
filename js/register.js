@@ -149,7 +149,7 @@ input[0].addEventListener('input',function(){
     validage(this,ull[4])
 })
 async function senddata(user){
-    
+    lds.classList.remove("d-none")
  let api = await  fetch('https://sticky-note-fe.vercel.app/signup',{
         method:'Post',
        body:JSON.stringify(user),
@@ -167,7 +167,7 @@ async function senddata(user){
     else{
         document.getElementById('msg').innerText = response.errors?.email.message
     }
-    
+    lds.classList.add("d-none")
     console.log(response);
 }
 function setervalid(input){
