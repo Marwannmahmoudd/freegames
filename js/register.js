@@ -25,6 +25,7 @@ age: input[4].value
     console.log(user);
 }
 document.getElementById('btnRegister').addEventListener('click',function(){
+  
     function ooh1(){
         let regex = /^(?:[a-zA-Z0-9\s@,=%$#&_\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDCF\uFDF0-\uFDFF\uFE70-\uFEFF]|(?:\uD802[\uDE60-\uDE9F]|\uD83B[\uDE00-\uDEFF])){2,20}$/
         if(input[0].value.trim() == ''){
@@ -118,6 +119,7 @@ ooh1()
     ooh5()
 })
 form.addEventListener('submit',function(){
+    
    setTimeout(() => {
     input.forEach(element => {
         if(element.classList.contains('is-invalid')){
@@ -127,13 +129,14 @@ form.addEventListener('submit',function(){
         isvalid = true
     }
       });
+    
+      
    }, 1000);
 
-  
-  if(isvalid === true){
+   if(isvalid === true){
     setform()
   }
-  
+
 })
 
 input[0].addEventListener('input',function(){
@@ -149,7 +152,7 @@ input[0].addEventListener('input',function(){
     validage(this,ull[4])
 })
 async function senddata(user){
-    lds.classList.remove("d-none");
+    lds.classList.remove("d-none")
  let api = await  fetch('https://sticky-note-fe.vercel.app/signup',{
         method:'Post',
        body:JSON.stringify(user),
@@ -167,7 +170,7 @@ async function senddata(user){
     else{
         document.getElementById('msg').innerText = response.errors?.email.message
     }
-    lds.classList.add("d-none");
+    lds.classList.add("d-none")
     console.log(response);
 }
 function setervalid(input){

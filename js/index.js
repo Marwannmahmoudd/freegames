@@ -13,23 +13,7 @@ e.preventDefault();
 form.addEventListener('input',function(){
     document.getElementById('msg').innerText = ''
 })
-form.addEventListener('submit',function(){
-    setTimeout(() => {
-        input.forEach(element => {
-            if(element.classList.contains('is-valid')){
-                isvalid = true
-            }
-        else{
-            isvalid = false
-        }
-          });
-    }, 1000);
-   
-    if(isvalid === true){
-      setform()
-    }
-    
-  })
+
 function setform(){
    const user={
 
@@ -41,46 +25,90 @@ password : input[1].value,
     console.log(user);
 }
 form.addEventListener('submit',function(){
- function ooh11(){
-    let regex2 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-    
-    if(input[0].value.trim() == ''){
-        ull[0].innerText = 'Email Is Required'
-        setervalid(input[0])
-    }
-else if(regex2.test(input[0].value)){
-    setsucvalid(input[0])
-return true
-}
-else{
-    ull[0].innerText = 'InValid Email Formate'
-    setervalid(input[0])
-    return false
-}
- }
-    function ooh22(){
-        let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
-   
-        if(input[1].value.trim() == ''){
-            ull[1].innerText = 'Password Is Required'
-            setervalid(input[1])
-           
+     function ooh11(){
+        let regex2 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+        
+        if(input[0].value.trim() == ''){
+            ull[0].innerText = 'Email Is Required'
+            setervalid(input[0])
+            return false
         }
-    else if(regex3.test(input[1].value)){
-        setsucvalid(input[1])
+    else if(regex2.test(input[0].value)){
+        setsucvalid(input[0])
     return true
     }
     else{
-        ull[1].innerText = 'Minimum five characters, at least one letter and one number'
-        setervalid(input[1])
+        ull[0].innerText = 'InValid Email Formate'
+        setervalid(input[0])
         return false
     }
-    
-    }
-ooh11()
-ooh22()
+     }
+        function ooh22(n){
+            let regex3 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/
+       
+            if(input[1].value.trim() == ''){
+                ull[1].innerText = 'Password Is Required'
+                setervalid(input[1])
+           return false
+            }
+        else if(regex3.test(input[1].value)){
+            setsucvalid(input[1])
+            n()
+        return true
+        }
+        else{
+            ull[1].innerText = 'Minimum five characters, at least one letter and one number'
+            setervalid(input[1])
+            return false
+        }
+        
+        }
+        function ooh3(){
+            setTimeout(() => {
+                input.forEach(element => {
+                    if(element.classList.contains('is-valid')){
+                        isvalid = true
+                    }else{
+                        isvalid = false
+                    }
+                    
+                    if(input[0].value.trim() == ''){
+                      isvalid = false
+                        return false
+                    }
+                    console.log(isvalid)
+                    if(isvalid === true){
+                        setform()
+                    }
+          })
+            },500);
+             
+     
+      
+        }
+    ooh11()
+    ooh22(ooh3)
+});
+/*document.getElementById('btnLogin').addEventListener('click',function(){
+        console.log('sd2');
+        setTimeout(() => {
+            input.forEach(element => {
+                if(element.classList.contains('is-invalid')){
+                    isvalid = false
+                }else{
+                    isvalid = true
+                }
+      })
+    },1000)
+    setTimeout(() => {
+        if(isvalid === true){
+            setform()
+        }
+    }, 1200);
+});*/
 
-}) ;
+
+
 input[0].addEventListener('input',function(){
     
     validemail(this,ull[0])
@@ -169,7 +197,7 @@ if(localStorage.getItem('theme') != null){
       mode.classList.replace('fa-moon','fa-sun')
    }
    document.querySelector("[data-theme]").setAttribute('data-theme',local)
-   console.log( document.querySelector("[data-theme]"));
+   
 }
 mode.addEventListener("click",function(){
    if(mode.classList.contains("fa-sun")){
