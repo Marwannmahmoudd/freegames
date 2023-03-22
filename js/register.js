@@ -122,21 +122,26 @@ form.addEventListener('submit',function(){
     
    setTimeout(() => {
     input.forEach(element => {
+        console.log(input[0]);
         if(element.classList.contains('is-invalid')){
             isvalid = false
+        }
+        else if(input[0].value.trim()== '' || input[1].value.trim()== ''){
+isvalid = false
         }
     else{
         isvalid = true
     }
+    if(isvalid === true){
+        setform()
+      }
       });
+     
     
       
    }, 1000);
 
-   if(isvalid === true){
-    setform()
-  }
-
+  
 })
 
 input[0].addEventListener('input',function(){
